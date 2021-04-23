@@ -2979,7 +2979,7 @@ class TurboCableStreamSourceElement extends HTMLElement {
   async connectedCallback() {
     connectStreamSource(this);
     const ctx = this
-    setTimeout(function(){
+    setTimeout(async function(){
       console.log('subsribeTo in connectedCallback')
       ctx.subscription = await subscribeTo(ctx.channel, { received: ctx.dispatchMessageEvent.bind(ctx) })
     }, 500);
