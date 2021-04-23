@@ -4,7 +4,10 @@ import { subscribeTo } from "./cable"
 class TurboCableStreamSourceElement extends HTMLElement {
   async connectedCallback() {
     connectStreamSource(this)
-    this.subscription = await subscribeTo(this.channel, { received: this.dispatchMessageEvent.bind(this) })
+    const ctx = this
+    setTimeout(function(){
+      ctx.subscription = await subscribeTo(ctx.channel, { received: ctx.dispatchMessageEvent.bind(ctx) })
+    }, 500);
   }
 
   disconnectedCallback() {
